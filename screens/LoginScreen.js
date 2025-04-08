@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('waiter'); // default
@@ -19,9 +19,14 @@ export default function LoginScreen() {
       Alert.alert("Please enter your name, password, and select a role.");
       return;
     }
-    Alert.alert(`Welcome ${name}, logging in as ${role}...`);
-    // Later we'll send name, password, and role to backend
+
+    // Once logged in, navigate to the OrderScreen
+    navigation.navigate('Order', { role, name });
   };
+
+
+  navigation.navigate('Order', { role, name });
+
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
