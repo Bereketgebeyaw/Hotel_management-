@@ -19,18 +19,18 @@ export default function LoginScreen({ navigation }) {
       Alert.alert("Please enter your name, password, and select a role.");
       return;
     }
-
-    // Once logged in, navigate to the OrderScreen
-    navigation.navigate('Order', { role, name });
+  
+    if (role === 'cashier') {
+      navigation.navigate('CashierScreen', { role, name });
+    } else if (role === 'waiter') {
+      navigation.navigate('Order', { role, name }); // You had this one already
+    } else {
+      Alert.alert("Invalid role selected.");
+    }
   };
-
-
-  navigation.navigate('Order', { role, name });
-
-
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <Text style={styles.title}>Muluken Hotel Login</Text>
+      <Text style={styles.title}>Beki coffee</Text>
       
       {/* Role selection clarity */}
       <Text style={styles.subTitle}>Please choose your role</Text>
